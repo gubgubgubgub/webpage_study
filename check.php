@@ -8,13 +8,19 @@ $bir_mm = $_POST["bir_mm"];
 $bir_dd = $_POST["bir_dd"];
 $sex = $_POST["sex"];
 $email= $_POST["email"];
-
+$con = mysqli_connect("localhost","Liam","rudwns5398","hi") or die ("Can't access DB");
+$query = "INSERT INTO exam (identification, name, password, date, sex, email) VALUES('$id', '$name', '$pw', 'wait', '$sex', '$email')";
+$resut=mysqli_query($con,$query);
 
 echo "<h3>ID는: {$id}, PW는: {$pw}, name는: {$name}  </h3>";
 
-# insert sql 작성
-$sql = "INSERT INTO signup_data (ID, PW, name) VALUES('$id', '$pw', '$name')";
+if(!$result) 
+{?>
+    <script> alert('회원가입이 완료되었습니다.'); location.href="/first_page.html"; </script> 
+<?php
+} else {?>
+    <script> alert('회원가입에 실패했습니다.\n다시 시도해 주세요.'); location.href="/sign_up_page.html"; </script>
+<?php } ?>
 
-if($conn->query($sql))echo "<h3>정보 등록 성공</h3>";
-else echo "<h3>도서등록 실패</h3>";
+
 ?>
