@@ -8,6 +8,46 @@
   color: #000;
 }
 
+#sidebar {
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #343a40;
+  padding: 20px;
+}
+/* 로고 이미지 */
+#sidebar .sidebar-logo img {
+  margin-top: 80px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+/* 메뉴 항목 */
+#sidebar ul li a {
+  color: #fff;
+  display: block;
+  padding: 10px;
+  font-size: 18px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+/* 메뉴 항목 호버 효과 */
+#sidebar ul li a:hover {
+  background-color: #3e444c;
+}
+/* 활성화된 메뉴 항목 */
+#sidebar ul li.active > a {
+  background-color: #5c626a;
+}
+.logo {
+  margin-top: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff; /* 기존에 로고 색상으로 사용되던 #2c3e50을 #fff(흰색)으로 변경 */
+}
+
 h1 {
   font-size: 48px;
   font-weight: 100;
@@ -183,6 +223,24 @@ h1 {
   color: #fff;
 }
 .footer > div:last-child {
+  flex:9;
+  color: #fff;
+}
+.footer_notice_board{
+  display: flex;
+  background: #1f1f1f;
+  padding:30px;
+  margin-top: 50px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer_notice_board > div:first-child{
+  flex:3;
+  text-align: center;
+  color: #fff;
+}
+.footer_notice_board > div:last-child {
   flex:9;
   color: #fff;
 }
