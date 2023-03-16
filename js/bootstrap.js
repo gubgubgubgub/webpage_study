@@ -131,6 +131,7 @@
     }, duration);
     return this;
   }
+  
 
   function setTransitionEndSupport() {
     $.fn.emulateTransitionEnd = transitionEndEmulator;
