@@ -1,16 +1,20 @@
+<!-- <?php
+  $jb_connect = mysqli_connect( 'localhost', 'root', 'rudwns5398', 'employees' );
+  var_dump( $jb_connect );
+?> -->
+
 <?php
-$conn = mysqli_connect(
-  'localhost',
-  'Liam',
-  'rudwns5398',
-  'hi',
-  3306);
-if (mysqli_connect_errno())
-{
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+$servername = "localhost";
+$username = "Liam";
+$password = "password";
+$dbname = "mydb";
+
+// 연결 생성
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// 연결 확인
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
-$sql = "SELECT VERSION()";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
-print_r($row["VERSION()"]);
+echo "Connected successfully";
 ?>

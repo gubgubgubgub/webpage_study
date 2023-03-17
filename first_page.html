@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 구글 템플릿 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <!-- 내가 사용하는 css  -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <!-- 부트스트랩 css 사용 -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <!-- cdn-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="intro_bg">
+        <div class="header">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+                <a class="navbar-brand" href="#">모든 해드립니다</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        메뉴
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <a class="dropdown-item" href="#">대행 알바</a>
+                        <a class="dropdown-item" href="#">줄서기 알바</a>
+                        <a class="dropdown-item" href="#">심부름 알바</a>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a type="button" class="nav-link" data-toggle="modal" data-target="#loginModal">
+                        로그인
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="sign_up_page.html">무료 회원가입</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+              <!-- 로그인 모달 창 -->
+                <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                            <label for="login_ID">아이디</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="아이디를 입력하세요">
+                            </div>
+                            <div class="form-group">
+                            <label for="login_PW">비밀번호</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호를 입력하세요">
+                            </div>
+                            <button type="submit" class="btn btn-primary">로그인</button>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- 로그인 모달 창 끝-->
+        <div class="intro_text">
+          <div>
+            <h1>ABOUT</h1>
+            <div class="contents1">우리는 사람들을 고용하여 쫌 더 편리한 생활을 살게하는게 목표이다!!</div>
+     
+          </div>
+          <ul class="icons">
+            <li>
+              <div class="icon_img">
+                <img src="image/icon01.PNG"
+                style="width:250px; height:128px;">
+              </div>
+              <div class="contents1_bold">대행 알바</div>
+              <div class="contents2">
+                  스토킹 및 난감한 상황을 겪고있나요? 걱정하지 마세요!! 
+                  대행 서비스를 이용해보세요!!
+              </div>
+              <div class="more">
+                MORE
+              </div>
+            </li>
+  
+            <li>
+              <div class="icon_img">
+                <img src="image/icon02.PNG"
+                style="width:250px; height:128px;">
+              </div>
+              <div class="contents1_bold">줄서기 알바</div>
+              <div class="contents2">
+                  돈은 있는데 시간이 없어 줄을 못 서신다고요? 걱정하지 마세요!! 
+                  줄서기 서비스를 이용해 보세요!!
+              </div>
+              <div class="more">
+                MORE
+              </div>
+            </li>
+            <li>
+              <div class="icon_img">
+                <img src="image/icon03.PNG"
+                style="width:250px; height:128px;">
+              </div>
+              <div class="contents1_bold">심부름 알바</div>
+              <div class="contents2">
+                  심부름을 시킬 일이 있는데 도움을 청할 사람이 없다고요? 걱정하지 마세요!! 
+                  심부름 서비스를 이용해 보세요!!
+              </div>
+              <div class="more">
+                MORE
+              </div>
+            </li>
+          </ul>
+          <!-- 베너  -->
+          <div class="container mt-3">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ul>
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="image/icon01.PNG" width="1100" height="300">
+                        <div class="carousel-caption ">
+                          <h2>대행 알바</h2>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="image/icon02.PNG"width="1100" height="300">
+                        <div class="carousel-caption d-none d-md-block">
+                          <h2>줄서기 알바</h2>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="image/icon03.PNG" width="1100" height="300">
+                        <div class="carousel-caption d-none d-md-block">
+                          <h2>심부름 알바</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" data-slide="next"> 
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+          <!-- 베너  끝-->
+        </div>
+        </div>
+        <!-- 광고 박스(모달창 이용) -->
+        <div id="adBox" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">아직 회원가입을 안하셨다면 오늘이 기회!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>지금 바로 회원갑입을 하시면 바로 500포인트를 드립니다!!!</p>
+                <div class="form-group">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="noShow">
+                    <label class="form-check-label" for="noShow">
+                      오늘 하루 동안 보지 않기
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- 광고 박스끝 -->
+      <!-- 시간 모달  -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="myModalLabel">알림</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              일정 시간 동안 활동이 없습니다. 다시 활동해주세요!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 시간 모달 끝-->
+      </div>
+      <div class="footer">
+        <div>LOGO</div>
+        <div>
+          CEO. Liam <br>
+          Addr. 수원 어딘가  <br>
+          Fax/Tel. 112 <br>
+        </div>
+      </div>
+    </div>
+    <!-- 체크박스 클릭 시 쿠키에 저장하는 스크립트 -->
+    <script>
+         // 일정 시간동안 마우스나 키보드 이벤트가 없으면 모달을 띄우는 함수
+      function showInactiveModal() {
+        // 모달을 띄울 시간 (5분 = 300000밀리초)
+        //var inactiveTime = 5000;
+        var inactiveTime = 50000;
+        var timeout;
+
+        // 마우스나 키보드 이벤트가 발생하면 타이머를 초기화합니다.
+        function resetTimer() {
+          clearTimeout(timeout);
+          timeout = setTimeout(showInactiveModal, inactiveTime);
+        }
+
+        $(document).on("mousemove keydown", function() {
+          resetTimer();
+        });
+
+        // 일정 시간이 지나면 모달을 띄웁니다.
+        timeout = setTimeout(function() {
+          $("#myModal").modal("show");
+        }, inactiveTime);
+      }
+
+      $(document).ready(function() {//시작
+        showInactiveModal();
+        $("#adBox").modal("show");
+
+        $("#noShow").on("click", function() {
+          if ($(this).is(":checked")) { //체크박스 클릭시
+            var now = new Date();
+            var expireTime = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+            document.cookie = "noShow=true;expires=" + expireTime.toUTCString();//이름은 "noShow"이고, 값은 "true"입니다. 만료 시간은 하루 후로 설정
+            console.log(document.cookie);
+          } else {
+            document.cookie = "noShow=false;expires=Thu, 01 Jan 1970 00:00:00 UTC";//쿠키를 삭제합니다. 이름은 "noShow"이고, 값은 "false"입니다. 만료 시간은 1970년 1월 1일로 설정
+            console.log(document.cookie);
+          }
+        });
+
+        if (document.cookie.indexOf("noShow=true") !== -1) {//쿠키가 있는지 검사
+          $("#adBox").modal("hide"); //noShow=true"이면 모달 창을 감춥
+        }
+
+      });
+    </script>
+    <!--  부트스트랩 js 사용 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+     <script src="js/bootstrap.min.js"></script>
+     <!--번들-->
+     <script src="js/bootstrap.bundle.min.js"></script>
+    <!--개별-->
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+     
+  </body>
+</html>
