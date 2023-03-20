@@ -68,7 +68,7 @@
                         <form>
                             <div class="form-group">
                             <label for="login_ID">아이디</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="아이디를 입력하세요">
+                            <input type="text" class="form-control" id="exampleInputID1" placeholder="아이디를 입력하세요">
                             </div>
                             <div class="form-group">
                             <label for="login_PW">비밀번호</label>
@@ -232,7 +232,7 @@
         </div>
       </div>
     </div>
-    <!-- 체크박스 클릭 시 쿠키에 저장하는 스크립트 -->
+    <!--  스크립트 스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트 -->
     <script>
          // 일정 시간동안 마우스나 키보드 이벤트가 없으면 모달을 띄우는 함수
       function showInactiveModal() {
@@ -257,10 +257,38 @@
         }, inactiveTime);
       }
 
+      function to_login(){
+          $('form').on('submit', function(event) {
+            event.preventDefault();
+            const ID = $('#exampleInputID1').val();
+            const password = $('#exampleInputPassword1').val();
+
+            $.ajax({
+                url: 'login.php',
+                type: 'POST',
+                data: {
+                    'ID': ID,
+                    'password': password
+                },
+                success: function(response) {
+                    if (response === 'success') {
+                        alert('로그인 성공');
+                        $('#loginModal').modal('hide');
+                        // 로그인 성공 후 페이지 리로드 또는 이동
+                        location.reload();
+                    } else {
+                        alert('아이디 또는 비밀번호가 잘못되었습니다.');
+                    }
+                }
+            });
+        });
+
+      }
+
       $(document).ready(function() {//시작
         showInactiveModal();
+        to_login();
         $("#adBox").modal("show");
-
         $("#noShow").on("click", function() {
           if ($(this).is(":checked")) { //체크박스 클릭시
             var now = new Date();
@@ -279,6 +307,7 @@
 
       });
     </script>
+    <!-- 스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트 -->
     <!--  부트스트랩 js 사용 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
