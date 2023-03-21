@@ -272,7 +272,9 @@
                 },
                 dataType: 'text', // 서버에서 반환되는 데이터 유형을 텍스트로 지정
                 success: function(response) {
+                  console.log('Raw Response:', response); // 응답 값을 콘솔에 출력
                   response = response.trim(); // 개행 문자 제거 반환하는 과정에서 \n가 붙어있을수도있어서
+                  console.log('Trimmed Response:', response); // 개행 문자가 제거된 응답 값을 콘솔에 출력
                     if (response === 'success') {
                         alert('로그인 성공');
                         $('#loginModal').modal('hide');
