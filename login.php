@@ -17,8 +17,8 @@ $ID = $_POST['ID'];
 $password = $_POST[ 'password'];
 
 // 확인을위한 코드
-echo "Client ID: " . $ID . "\n";
-echo "Client Password: " . $password . "\n";
+// echo "Client ID: " . $ID . "\n";
+// echo "Client Password: " . $password . "\n";
 
 $sql = "SELECT * FROM exam WHERE identification = ?"; 
 $stmt = $conn->prepare($sql);
@@ -29,8 +29,8 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     // 확인을위한 코드
-    echo "Database ID: " . $row['identification'] . "\n";
-    echo "Database Password: " . $row['password'] . "\n";
+    // echo "Database ID: " . $row['identification'] . "\n";
+    // echo "Database Password: " . $row['password'] . "\n";
 
     if ($password === $row['password']) {
         echo 'success';
