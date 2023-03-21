@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); // 기본 24분
 
 if (isset($_SESSION['user_id'])) {
     echo $_SESSION['user_id'];

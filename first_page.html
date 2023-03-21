@@ -281,7 +281,8 @@
                     if (response === 'success') {
                         alert('로그인 성공');
                         $('#loginModal').modal('hide');
-
+                        // 로그인 성공 후 로그아웃 버튼 표시
+                         $('#logout-btn').css('display', 'block');
                         // 로그인 및 회원가입 버튼을 숨기고 사용자 이름을 표시합니다.
                         $('.nav-link[data-toggle="modal"]').parent().hide(); // 로그인 버튼 숨기기
                         $('a.nav-link[href="sign_up_page.html"]').parent().hide(); // 회원가입 버튼 숨기기
@@ -299,7 +300,7 @@
       }
       function check_login_status(){
         // 로그인 상태 확인
-        $.get('check_login_status.php', function(response) {
+        $.get('check_login.php', function(response) {
             if (response !== 'not_logged_in') {
                 $('.nav-link[data-toggle="modal"]').parent().hide(); // 로그인 버튼 숨기기
                 $('a.nav-link[href="sign_up_page.html"]').parent().hide(); // 회원가입 버튼 숨기기
@@ -307,7 +308,7 @@
             }
         });
       }
-      
+
       $(document).ready(function() {//시작
         showInactiveModal();
         to_login();
