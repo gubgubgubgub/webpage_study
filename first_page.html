@@ -54,6 +54,9 @@
                     <li class="nav-item logout-btn-style" id="logout-btn" style="display:none;">
                       <a class="nav-link" href="#">로그아웃</a>
                     </li>
+                    <li class="nav-item" id="username-display" style="display:none;">
+                      <a class="nav-link"></a>
+                    </li>
                   </ul>
                 </div>
               </nav>
@@ -303,12 +306,12 @@
         // 로그인 상태 확인
         $.get('check_login.php', function(response) {
             if (response !== 'not_logged_in') {
+              const username = response.trim(); // 사용자 이름을 응답에서 가져옴
               $('#logout-btn').css('display', 'block');
-                  // 로그인 및 회원가입 버튼을 숨기고 사용자 이름을 표시합니다.
-                $('.nav-link[data-toggle="modal"]').parent().hide(); // 로그인 버튼 숨기기
-                $('a.nav-link[href="sign_up_page.html"]').parent().hide(); // 회원가입 버튼 숨기기
-                $('#navbarNav ul.navbar-nav').append(`<li class="nav-item username-display"><a class="nav-link">${response}</a></li>`);
-
+              $('#username-display').css('display', 'block').children('a').text(username); // 변경된 부분
+              // 로그인 및 회원가입 버튼을 숨기고 사용자 이름을 표시합니다.
+              $('.nav-link[data-toggle="modal"]').parent().hide(); // 로그인 버튼 숨기기
+              $('a.nav-link[href="sign_up_page.html"]').parent().hide(); // 회원가입 버튼 숨기기
             }
         });
       }
