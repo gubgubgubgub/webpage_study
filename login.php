@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
     echo "Database ID: " . $row['identification'] . "\n";
     echo "Database Password: " . $row['password'] . "\n";
 
-    if (password_verify($password, $row['password'])) { 
+    if ($password === $row['password']) {
         echo 'success';
     } else {
         echo 'fail';
