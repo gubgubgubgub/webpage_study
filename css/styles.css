@@ -108,14 +108,14 @@ h1 {
   width:50px;
   color:#fff;
 }
-.nav-item.username-display {
+.navbar .navbar-nav .nav-item.username-display {
   background-color: #007bff;
   margin-left: 10px;
   padding: 5px;
   border-radius: 5px;
 }
 
-.nav-item.logout-btn-style {
+.navbar .navbar-nav .nav-item.logout-btn-style {
   margin-left: 10px;
 }
 .nav{
