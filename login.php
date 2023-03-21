@@ -1,4 +1,5 @@
 <?php
+session_start(); // 세션 시작
 $servername = "localhost";
 $username = "Liam";
 $password = "rudwns5398";
@@ -33,6 +34,7 @@ if ($result->num_rows > 0) {
     // echo "Database Password: " . $row['password'] . "\n";
 
     if ($password === $row['password']) {
+        $_SESSION['user_id'] = $row['identification']; //변수 user_id에 identification넣음
         echo 'success';
     } else {
         echo 'fail';

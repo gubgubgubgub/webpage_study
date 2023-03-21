@@ -51,6 +51,9 @@
                     <li class="nav-item">
                       <a class="nav-link" href="sign_up_page.html">무료 회원가입</a>
                     </li>
+                    <li class="nav-item" id="logout-btn" style="display:none;">
+                      <a class="nav-link" href="#">로그아웃</a>
+                  </li>
                   </ul>
                 </div>
               </nav>
@@ -294,10 +297,21 @@
         });
 
       }
-
+      function check_login_status(){
+        // 로그인 상태 확인
+        $.get('check_login_status.php', function(response) {
+            if (response !== 'not_logged_in') {
+                $('.nav-link[data-toggle="modal"]').parent().hide(); // 로그인 버튼 숨기기
+                $('a.nav-link[href="sign_up_page.html"]').parent().hide(); // 회원가입 버튼 숨기기
+                $('#navbarNav ul.navbar-nav').append(`<li class="nav-item"><a class="nav-link">${response}</a></li>`); // 사용자 이름 추가
+            }
+        });
+      }
+      
       $(document).ready(function() {//시작
         showInactiveModal();
         to_login();
+        check_login_status();
        // $("#adBox").modal("show");
         $("#noShow").on("click", function() {
           if ($(this).is(":checked")) { //체크박스 클릭시
@@ -316,6 +330,15 @@
         }
 
       });
+
+      //로그아웃 클릭시
+      $('#logout-btn').click(function() {
+        $.get('logout.php', function(response) {
+            if (response === 'logged_out') {
+                location.reload();
+            }
+        });
+    });
     </script>
     <!-- 스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트  스크립트 -->
     <!--  부트스트랩 js 사용 -->
