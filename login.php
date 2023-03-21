@@ -1,10 +1,13 @@
 <?php
 $servername = "localhost";
 $username = "Liam";
-$password = "password";
-$dbname = "mydb";
+$password = "rudwns5398";
+$dbname = "hi";
 
 $conn = new mysqli_connect($servername, $username, $password, $dbname);
+// 오류 확인
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
