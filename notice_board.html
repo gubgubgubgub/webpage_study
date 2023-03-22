@@ -316,7 +316,26 @@
 
       // 제목 컬럼 추가
       const titleColumn = document.createElement("td");
-      titleColumn.textContent = title;
+      const titleLink = document.createElement("a");
+      titleLink.textContent = title;
+      titleLink.href = "#";
+
+      titleLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      // 게시물 내용을 표시할 모달 창 요소를 가져옵니다.
+      const postContentModal = document.querySelector("#postContentModal");
+      const postContentModalTitle = postContentModal.querySelector(".modal-title");
+      const postContentModalBody = postContentModal.querySelector(".modal-body");
+
+      // 모달 창에 게시물 정보를 설정합니다.
+      postContentModalTitle.textContent = title;
+      postContentModalBody.textContent = content;
+
+      // 모달 창을 엽니다.
+      $(postContentModal).modal("show");
+      });
+      titleColumn.appendChild(titleLink);
       newRow.appendChild(titleColumn);
 
       // 글쓴이 컬럼 추가
@@ -346,6 +365,7 @@
       document.body.removeChild(modalBackdrop);
     });
   });
+  
   function check_login_status(){
         // 로그인 상태 확인
         $.get('check_login.php', function(response) {
