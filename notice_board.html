@@ -302,7 +302,8 @@
     submitPostButton.addEventListener("click", () => {
       const title = postTitle.value;
       const content = postContent.value;
-      const author = loggedInUser; // 글쓴이를 전역 변수에서 가져옵니다.
+      const loggedInUser = localStorage.getItem("loggedInUser"); // 로컬 스토리지에서 사용자 이름 가져오기
+      const author = loggedInUser; 
       const createdAt = new Date().toISOString().slice(0, 10);
 
       const newRow = document.createElement("tr");
