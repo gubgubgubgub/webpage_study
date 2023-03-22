@@ -188,14 +188,17 @@ h1 {
   margin:auto;
   letter-spacing: -1px;
 }
-.more{
-  width:100px;
+.custom-more-btn {
+  width: 100px;
   height: 30px;
   background: #6d6e09;
   color: #fff;
   font-size: 12px;
   line-height: 30px;
-  margin:25px auto;
+  margin: 25px auto;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
 }
 
 

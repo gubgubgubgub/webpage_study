@@ -104,11 +104,10 @@
                   스토킹 및 난감한 상황을 겪고있나요? 걱정하지 마세요!! 
                   대행 서비스를 이용해보세요!!
               </div>
-              <div class="more">
-                MORE
+              <div >
+                <a href="notice_board.html" class="custom-more-btn">MORE</a>
               </div>
             </li>
-  
             <li>
               <div class="icon_img">
                 <img src="image/icon02.PNG"
@@ -119,8 +118,8 @@
                   돈은 있는데 시간이 없어 줄을 못 서신다고요? 걱정하지 마세요!! 
                   줄서기 서비스를 이용해 보세요!!
               </div>
-              <div class="more">
-                MORE
+              <div>
+                <a href="notice_board.html" class="custom-more-btn">MORE</a>
               </div>
             </li>
             <li>
@@ -133,8 +132,8 @@
                   심부름을 시킬 일이 있는데 도움을 청할 사람이 없다고요? 걱정하지 마세요!! 
                   심부름 서비스를 이용해 보세요!!
               </div>
-              <div class="more">
-                MORE
+              <div>
+                <a href="notice_board.html" class="custom-more-btn">MORE</a>
               </div>
             </li>
           </ul>
@@ -302,10 +301,12 @@
         });
 
       }
+      let loggedInUser = ""; // 전역 변수 추가
       function check_login_status(){
         // 로그인 상태 확인
         $.get('check_login.php', function(response) {
             if (response !== 'not_logged_in') {
+              loggedInUser = response.trim(); // 전역 변수에 사용자 이름 저장 다은페이지에서도 사용하기위해
               const username = response.trim(); // 사용자 이름을 응답에서 가져옴
               $('#logout-btn').css('display', 'block');
               $('#username-display').css('display', 'block').children('a').text(username); // 변경된 부분
