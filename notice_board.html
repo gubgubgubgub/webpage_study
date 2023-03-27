@@ -380,6 +380,7 @@
     const content = $("#postContent").val();
 
     // 작성자
+    const loggedInUser = localStorage.getItem("loggedInUser"); // 로컬 스토리지에서 사용자 이름 가져오기
     const author = loggedInUser ? loggedInUser : "guest";
 
     // 작성일
