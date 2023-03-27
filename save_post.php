@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $createdAt = $_POST["createdAt"];
   
     // SQL 쿼리문 작성
-    $sql = "INSERT INTO notice_board1 (title, content, author, createdAt) VALUES ('$title', '$content', '$author', '$createdAt')";
+    $sql = "INSERT INTO notice_table1 (title, content, author, createdAt) VALUES ('$title', '$content', '$author', '$createdAt')";
   
     // SQL 쿼리 실행
     if (mysqli_query($conn, $sql)) {
