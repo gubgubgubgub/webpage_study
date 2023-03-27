@@ -13,10 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST["title"];
     $content = $_POST["content"];
     $writer = $_POST["author"];
-    $createdAt = $_POST["createdAt"];
+    $date = $_POST["createdAt"];
   
     // SQL 쿼리문 작성
-    $sql = "INSERT INTO notice_table1 (title, content, writer, createdAt) VALUES ('$title', '$content', '$writer', '$createdAt')";
+    $sql = "INSERT INTO notice_table1 (title, content, writer, date) VALUES ('$title', '$content', '$writer', '$date')";
   
     // SQL 쿼리 실행
     if (mysqli_query($conn, $sql)) {
