@@ -12,11 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // POST 요청으로 전달된 데이터를 변수에 저장
     $title = $_POST["title"];
     $content = $_POST["content"];
-    $author = $_POST["author"];
+    $writer = $_POST["author"];
     $createdAt = $_POST["createdAt"];
   
     // SQL 쿼리문 작성
-    $sql = "INSERT INTO notice_table1 (title, content, author, createdAt) VALUES ('$title', '$content', '$author', '$createdAt')";
+    $sql = "INSERT INTO notice_table1 (title, content, writer, createdAt) VALUES ('$title', '$content', '$writer', '$createdAt')";
   
     // SQL 쿼리 실행
     if (mysqli_query($conn, $sql)) {
