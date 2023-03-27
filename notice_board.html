@@ -125,29 +125,26 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">번호</th>
                         <th scope="col">제목</th>
                         <th scope="col">글쓴이</th>
                         <th scope="col">작성일</th>
-                        <th scope="col">조회수</th>
                       </tr>
                     </thead>
-                    <tbody id="postList">
-                      <!-- 게시글 내용이 들어갈 부분 -->
+                    <tbody id="fixedPostList">
+                      <!-- 고정 게시글 -->
                       <tr>
-                        <th scope="row">1</th>
                         <td>대행알바 이용방법</td>
-                        <td>관리자</td>
-                        <td>2021-01-01</td>
-                        <td>100</td>
+                        <td >관리자</td>
+                        <td >2021-01-01</td>
                       </tr>
                       <tr>
-                        <th scope="row">2</th>
                         <td>대행알바 가격</td>
-                        <td>관리자</td>
-                        <td>2021-02-02</td>
-                        <td>1040</td>
+                        <td >관리자</td>
+                        <td >2021-02-02</td>
                       </tr>
+                    </tbody>
+                    <tbody id="postList">
+                      <!-- 새 게시글 -->
                     </tbody>
                   </table>
                   <!-- 페이징 기능 -->
@@ -161,13 +158,17 @@
                               <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#newPostModal" style="margin-right: 40px;">새 글 작성</button>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">이전</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">다음</a></li>
+                            <li class="page-item">
+                              <a class="page-link" href="#" id="prevBtn">이전</a>
+                            </li>
+                            <div id="pageNumbers" class="d-inline">
+                              <!-- 페이지 번호가 동적으로 삽입될 위치 -->
+                            </div>
+                            <li class="page-item">
+                              <a class="page-link" href="#" id="nextBtn">다음</a>
+                            </li>
                           </ul>
-                        </nav>
+                      </nav>
                       </div>
                     </div>
                   </div>
@@ -242,25 +243,24 @@
   <script>
     // 각 content클릭시 보여주는 게시글
     function getPosts(contentId) {
-      var postList = document.getElementById("postList");
       postList.innerHTML = ""; // 이전 게시글 목록 제거
 
       // contentId에 해당하는 게시글을 가져온 후, postList에 추가합니다.
       if (contentId === "content1") {
-        var post1 = "<tr><th scope='row'>1</th><td>대행알바 이용방법</td><td>관리자</td><td>2021-01-01</td><td>100</td></tr>";
-        var post2 = "<tr><th scope='row'>2</th><td>대행알바 가격</td><td>관리자</td><td>2021-02-02</td><td>1040</td></tr>";
+        var post1 = "<tr><td>대행알바 이용방법</td><td>관리자</td><td>2021-01-01</td></tr>";
+        var post2 = "<tr><td>대행알바 가격</td><td>관리자</td><td>2021-02-02</td></tr>";
         postList.innerHTML = post1 + post2;
       } else if (contentId === "content2") {
-        var post3 = "<tr><th scope='row'>1</th><td>줄서기 알바 이용방법</td><td>관리자</td><td>2021-03-03</td><td>50</td></tr>";
-        var post4 = "<tr><th scope='row'>2</th><td>줄서기 알바 가격</td><td>관리자</td><td>2021-04-04</td><td>500</td></tr>";
+        var post3 = "<tr></th><td>줄서기 알바 이용방법</td><td>관리자</td><td>2021-03-03</td></tr>";
+        var post4 = "<tr></th><td>줄서기 알바 가격</td><td>관리자</td><td>2021-04-04</td></tr>";
         postList.innerHTML = post3 + post4;
       } else if (contentId === "content3") {
-        var post5 = "<tr><th scope='row'>1</th><td>심부름 알바 이용방법</td><td>관리자</td><td>2021-03-03</td><td>50</td></tr>";
-        var post6 = "<tr><th scope='row'>2</th><td>심부름 알바 가격</td><td>관리자</td><td>2021-04-04</td><td>800</td></tr>";
+        var post5 = "<tr></th><td>심부름 알바 이용방법</td><td>관리자</td><td>2021-03-03</td></tr>";
+        var post6 = "<tr></th><td>심부름 알바 가격</td><td>관리자</td><td>2021-04-04</td></tr>";
         postList.innerHTML = post5 + post6;
       } else if (contentId === "content4") {
-        var post7 = "<tr><th scope='row'>1</th><td>포인트 이용방법</td><td>관리자</td><td>2021-03-03</td><td>50</td></tr>";
-        var post8 = "<tr><th scope='row'>2</th><td>포인트 가격</td><td>관리자</td><td>2021-04-04</td><td>200</td></tr>";
+        var post7 = "<tr></th><td>포인트 이용방법</td><td>관리자</td><td>2021-03-03</td></tr>";
+        var post8 = "<tr></th><td>포인트 가격</td><td>관리자</td><td>2021-04-04</td></tr>";
         postList.innerHTML = post7 + post8;
       }
     }
@@ -308,7 +308,8 @@
     const postTitle = document.querySelector("#postTitle");
     const postContent = document.querySelector("#postContent");
     const submitPostButton = document.querySelector("#newPostModal .btn-primary");
-    const postList = document.querySelector("#postList");
+    const postList  = document.querySelector("#postList");
+    loadPosts(); // 페이지 로드시 
 
     // 새 글 작성 버튼을 누르면 모달 초기화
     newPostButton.addEventListener("click", () => {
@@ -321,58 +322,11 @@
       const title = postTitle.value;
       const content = postContent.value;
       const loggedInUser = localStorage.getItem("loggedInUser"); // 로컬 스토리지에서 사용자 이름 가져오기
-      const author = loggedInUser; 
+      const author = loggedInUser || "guest";
       const createdAt = new Date().toISOString().slice(0, 10);
 
-      const newRow = document.createElement("tr");
-
-      // 번호 컬럼 추가
-      const idColumn = document.createElement("th");
-      idColumn.scope = "row";
-      idColumn.textContent = postList.childElementCount + 1;
-      newRow.appendChild(idColumn);
-
-      // 제목 컬럼 추가
-      const titleColumn = document.createElement("td");
-      const titleLink = document.createElement("a");
-      titleLink.textContent = title;
-      titleLink.href = "#";
-
-      titleLink.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      // 게시물 내용을 표시할 모달 창 요소를 가져옵니다.
-      const postContentModal = document.querySelector("#postContentModal");
-      const postContentModalTitle = postContentModal.querySelector(".modal-title");
-      const postContentModalBody = postContentModal.querySelector(".modal-body");
-
-      // 모달 창에 게시물 정보를 설정합니다.
-      postContentModalTitle.textContent = title;
-      postContentModalBody.textContent = content;
-
-      // 모달 창을 엽니다.
-      $(postContentModal).modal("show");
-      });
-      titleColumn.appendChild(titleLink);
-      newRow.appendChild(titleColumn);
-
-      // 글쓴이 컬럼 추가
-      const authorColumn = document.createElement("td");
-      authorColumn.textContent = author;
-      newRow.appendChild(authorColumn);
-
-      // 작성일 컬럼 추가
-      const dateColumn = document.createElement("td");
-      dateColumn.textContent = createdAt;
-      newRow.appendChild(dateColumn);
-
-      // 조회수 컬럼 추가
-      const viewColumn = document.createElement("td");
-      viewColumn.textContent = 0;
-      newRow.appendChild(viewColumn);
-
-      // 테이블에 새 행 추가
-      postList.appendChild(newRow);
+      // 새 글 추가
+      addNewPost(title, content, author, createdAt);
 
       // 모달 창 닫기
       newPostModal.classList.remove("show");
@@ -381,9 +335,135 @@
       document.body.style.paddingRight = "0";
       const modalBackdrop = document.querySelector(".modal-backdrop");
       document.body.removeChild(modalBackdrop);
+      add_notice_table();
     });
+
   });
-  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////페이징
+  let currentPage = 1; // 현재 페이지
+  let totalPages = 3; // 총 페이지 수 (서버에서 받아온 게시글 수에 따라 변경)
+  const postsPerPage = 5; // 페이지당 게시글 수
+  const postList = document.getElementById("postList"); // 전역 변수로 선언
+
+  function getPosts(contentId) {
+    totalPages = Math.ceil((fixedPostList.childElementCount + postList.childElementCount) / postsPerPage);
+
+
+  // 게시글 목록을 가져온 후 페이지네이션 업데이트
+  updatePagination();
+  }
+
+  function loadPosts() {
+  // 현재 페이지에 맞는 게시글을 불러오는 로직을 추가하세요.
+  // 예: 서버에서 게시글을 가져오거나, 로컬 스토리지에서 게시글을 불러옵니다.
+
+  // 페이지네이션 업데이트
+  updatePagination();
+}
+
+  function addNewPost(title, content, author, createdAt) {
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `<th scope="row">${title}</th><td>${author}</td><td>${createdAt}</td>`;
+
+    // 테이블에 새 행 추가
+    postList.prepend(newRow);
+
+    // 페이지네이션 업데이트
+    updatePagination();
+  }
+
+  function add_notice_table() {
+        // 제목
+    const title = $("#postTitle").val();
+
+    // 내용
+    const content = $("#postContent").val();
+
+    // 작성자
+    const author = loggedInUser ? loggedInUser : "guest";
+
+    // 작성일
+    const date = new Date(); // 현재 날짜와 시간을 가져옵니다.
+    const createdAt = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+        $.ajax({
+      url: 'save_post.php', // 데이터를 전송할 서버 파일의 경로
+      type: 'POST',
+      data: {
+        'title': title, // 제목
+        'content': content, // 내용
+        'author': author, // 작성자
+        'createdAt': createdAt // 작성일
+      },
+      dataType: 'text', // 서버에서 반환되는 데이터 유형을 텍스트로 지정
+      success: function(response) {
+        console.log('Raw Response:', response); // 응답 값을 콘솔에 출력
+        response = response.trim(); // 개행 문자 제거 반환하는 과정에서 \n가 붙어있을수도있어서
+        console.log('Trimmed Response:', response); // 개행 문자가 제거된 응답 값을 콘솔에 출력
+        if (response === 'success') {
+          alert('게시글이 성공적으로 등록되었습니다.');
+          // 게시글 등록 후 페이지 리로드 또는 이동
+          location.reload();
+        } else {
+          alert('게시글 등록에 실패하였습니다.');
+        }
+      }
+    });
+
+  }
+
+  function updatePagination() {
+    const pageNumbers = document.getElementById("pageNumbers");
+    pageNumbers.innerHTML = ""; // 기존의 페이지 번호를 비운다.
+
+    // 현재 페이지가 첫 페이지인 경우, 이전 버튼을 비활성화
+    if (currentPage === 1) {
+      prevBtn.classList.add("disabled");
+    } else {
+      prevBtn.classList.remove("disabled");
+    }
+
+    // 현재 페이지가 마지막 페이지인 경우, 다음 버튼을 비활성화
+    if (currentPage === totalPages) {
+      nextBtn.classList.add("disabled");
+    } else {
+      nextBtn.classList.remove("disabled");
+    }
+
+    // 페이지 번호
+    for (let i = 1; i <= totalPages; i++) {
+      const pageItem = document.createElement("li");
+      pageItem.classList.add("page-item");
+      if (i === currentPage) pageItem.classList.add("active");
+      pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+      pageItem.onclick = function () {
+        currentPage = i;
+        loadPosts();
+      };
+      pageNumbers.appendChild(pageItem);
+    }
+  }
+
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+ // 이전 버튼
+prevBtn.onclick = function () {
+  if (currentPage > 1) {
+    currentPage--;
+    loadPosts();
+  }
+};
+
+// 다음 버튼
+nextBtn.onclick = function () {
+  if (currentPage < totalPages) {
+    currentPage++;
+    loadPosts();
+  }
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////페이징
   function check_login_status(){
         // 로그인 상태 확인
         $.get('check_login.php', function(response) {

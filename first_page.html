@@ -285,7 +285,7 @@
                         $('#loginModal').modal('hide');
                         // 로그인 성공 후 로그아웃 버튼 표시
                          $('#logout-btn').css('display', 'block');
-                        // 로그인 및 회원가입 버튼을 숨기고 사용자 이름을 표시합니다.
+                        // 로그인 및 회원가입 버튼을 숨기고 사용자 이름을 표시.
                         $('.nav-link[data-toggle="modal"]').parent().hide(); // 로그인 버튼 숨기기
                         $('a.nav-link[href="sign_up_page.html"]').parent().hide(); // 회원가입 버튼 숨기기
                         $('#navbarNav ul.navbar-nav').append(`<li class="nav-item username-display"><a class="nav-link">${ID}</a></li>`); // 사용자 이름 추가
@@ -306,11 +306,11 @@
         // 로그인 상태 확인
         $.get('check_login.php', function(response) {
             if (response !== 'not_logged_in') {
-              loggedInUser = response.trim(); // 전역 변수에 사용자 이름 저장 다은페이지에서도 사용하기위해
+              loggedInUser = response.trim(); // 전역 변수에 사용자 이름 저장 
               const username = response.trim(); // 사용자 이름을 응답에서 가져옴
               $('#logout-btn').css('display', 'block');
               $('#username-display').css('display', 'block').children('a').text(username); // 변경된 부분
-              // 로그인 및 회원가입 버튼을 숨기고 사용자 이름을 표시합니다.
+              // 로그인 및 회원가입 버튼을 숨기고 사용자 이름을 표시
               $('.nav-link[data-toggle="modal"]').parent().hide(); // 로그인 버튼 숨기기
               $('a.nav-link[href="sign_up_page.html"]').parent().hide(); // 회원가입 버튼 숨기기
             }
@@ -322,21 +322,21 @@
         to_login();
         check_login_status();
        // $("#adBox").modal("show");
-        $("#noShow").on("click", function() {
-          if ($(this).is(":checked")) { //체크박스 클릭시
-            var now = new Date();
-            var expireTime = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-            document.cookie = "noShow=true;expires=" + expireTime.toUTCString();//이름은 "noShow"이고, 값은 "true"입니다. 만료 시간은 하루 후로 설정
-            console.log(document.cookie);
-          } else {
-            document.cookie = "noShow=false;expires=Thu, 01 Jan 1970 00:00:00 UTC";//쿠키를 삭제합니다. 이름은 "noShow"이고, 값은 "false"입니다. 만료 시간은 1970년 1월 1일로 설정
-            console.log(document.cookie);
-          }
-        });
+        // $("#noShow").on("click", function() {
+        //   if ($(this).is(":checked")) { //체크박스 클릭시
+        //     var now = new Date();
+        //     var expireTime = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+        //     document.cookie = "noShow=true;expires=" + expireTime.toUTCString();//이름은 "noShow"이고, 값은 "true"입니다. 만료 시간은 하루 후로 설정
+        //     console.log(document.cookie);
+        //   } else {
+        //     document.cookie = "noShow=false;expires=Thu, 01 Jan 1970 00:00:00 UTC";//쿠키를 삭제합니다. 이름은 "noShow"이고, 값은 "false"입니다. 만료 시간은 1970년 1월 1일로 설정
+        //     console.log(document.cookie);
+        //   }
+        // });
 
-        if (document.cookie.indexOf("noShow=true") !== -1) {//쿠키가 있는지 검사
-          $("#adBox").modal("hide"); //noShow=true"이면 모달 창을 감춥
-        }
+        // if (document.cookie.indexOf("noShow=true") !== -1) {//쿠키가 있는지 검사
+        //   $("#adBox").modal("hide"); //noShow=true"이면 모달 창을 감춥
+        // }
 
       });
 
