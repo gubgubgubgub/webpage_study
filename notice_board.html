@@ -339,38 +339,6 @@
     });
 
   });
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////페이징
-  let currentPage = 1; // 현재 페이지
-  let totalPages = 3; // 총 페이지 수 (서버에서 받아온 게시글 수에 따라 변경)
-  const postsPerPage = 5; // 페이지당 게시글 수
-  const postList = document.getElementById("postList"); // 전역 변수로 선언
-
-  function getPosts(contentId) {
-    totalPages = Math.ceil((fixedPostList.childElementCount + postList.childElementCount) / postsPerPage);
-
-
-  // 게시글 목록을 가져온 후 페이지네이션 업데이트
-  updatePagination();
-  }
-
-  function loadPosts() {
-  // 현재 페이지에 맞는 게시글을 불러오는 로직을 추가하세요.
-  // 예: 서버에서 게시글을 가져오거나, 로컬 스토리지에서 게시글을 불러옵니다.
-
-  // 페이지네이션 업데이트
-  updatePagination();
-}
-
-  function addNewPost(title, content, author, createdAt) {
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `<th scope="row">${title}</th><td>${author}</td><td>${createdAt}</td>`;
-
-    // 테이블에 새 행 추가
-    postList.prepend(newRow);
-
-    // 페이지네이션 업데이트
-    updatePagination();
-  }
 
   function add_notice_table() {
         // 제목
@@ -380,7 +348,7 @@
     const content = $("#postContent").val();
 
     // 작성자
-    const loggedInUser = localStorage.getItem("loggedInUser"); // 로컬 스토리지에서 사용자 이름 가져오기
+    
     const author = loggedInUser ? loggedInUser : "guest";
 
     // 작성일
@@ -403,8 +371,8 @@
         console.log('Trimmed Response:', response); // 개행 문자가 제거된 응답 값을 콘솔에 출력
         if (response === 'success') {
           alert('게시글이 성공적으로 등록되었습니다.');
-          // 게시글 등록 후 페이지 리로드 또는 이동
-          location.reload();
+          load_posts();  // 새로운 함수를 호출하여 게시물 목록을 업데이트합니다
+
         } else {
           alert('게시글 등록에 실패하였습니다.');
         }
@@ -413,58 +381,33 @@
 
   }
 
-  function updatePagination() {
-    const pageNumbers = document.getElementById("pageNumbers");
-    pageNumbers.innerHTML = ""; // 기존의 페이지 번호를 비운다.
+  function load_posts() {
+      $.ajax({
+          url: 'get_posts.php',
+          type: 'GET',
+          dataType: 'json',
+          success: function (posts) {
+              // 게시물 목록을 담을 테이블 요소를 찾습니다.
+              const $table = $('#postList');
 
-    // 현재 페이지가 첫 페이지인 경우, 이전 버튼을 비활성화
-    if (currentPage === 1) {
-      prevBtn.classList.add("disabled");
-    } else {
-      prevBtn.classList.remove("disabled");
-    }
+              // 기존 테이블의 모든 행을 삭제합니다.
+              $table.empty();
 
-    // 현재 페이지가 마지막 페이지인 경우, 다음 버튼을 비활성화
-    if (currentPage === totalPages) {
-      nextBtn.classList.add("disabled");
-    } else {
-      nextBtn.classList.remove("disabled");
-    }
-
-    // 페이지 번호
-    for (let i = 1; i <= totalPages; i++) {
-      const pageItem = document.createElement("li");
-      pageItem.classList.add("page-item");
-      if (i === currentPage) pageItem.classList.add("active");
-      pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-      pageItem.onclick = function () {
-        currentPage = i;
-        loadPosts();
-      };
-      pageNumbers.appendChild(pageItem);
-    }
+              // 게시물 목록을 테이블에 추가합니다.
+              posts.forEach(post => {
+                const newRow = `
+                    <tr>
+                        <td>${post.title}</td>
+                        <td>${post.writer}</td>
+                        <td>${post.createdAt}</td>
+                    </tr>
+                `;
+                  $table.append(newRow);
+              });
+          }
+      });
   }
 
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-
- // 이전 버튼
-prevBtn.onclick = function () {
-  if (currentPage > 1) {
-    currentPage--;
-    loadPosts();
-  }
-};
-
-// 다음 버튼
-nextBtn.onclick = function () {
-  if (currentPage < totalPages) {
-    currentPage++;
-    loadPosts();
-  }
-};
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////페이징
   function check_login_status(){
         // 로그인 상태 확인
         $.get('check_login.php', function(response) {
@@ -483,6 +426,7 @@ nextBtn.onclick = function () {
     $(document).ready(function () {//시작
       showInactiveModal();
       check_login_status();
+      load_posts();
     });
   </script>
 <!--  부트스트랩 js 사용 -->
