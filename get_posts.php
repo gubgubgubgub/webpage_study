@@ -5,7 +5,8 @@ if (mysqli_connect_errno($conn)) {
     die("Failed to connect to MySQL: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM notice_table1 ORDER BY createdAt DESC";
+$sql = "SELECT id, title, writer, date as createdAt FROM notice_table1 ORDER BY createdAt DESC";
+
 $result = mysqli_query($conn, $sql);
 
 $posts = array();

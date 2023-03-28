@@ -325,8 +325,7 @@
       const author = loggedInUser || "guest";
       const createdAt = new Date().toISOString().slice(0, 10);
 
-      // 새 글 추가
-      addNewPost(title, content, author, createdAt);
+      add_notice_table();
 
       // 모달 창 닫기
       newPostModal.classList.remove("show");
@@ -335,7 +334,7 @@
       document.body.style.paddingRight = "0";
       const modalBackdrop = document.querySelector(".modal-backdrop");
       document.body.removeChild(modalBackdrop);
-      add_notice_table();
+      
     });
 
   });
@@ -410,36 +409,37 @@
   }
 
   function load_posts() {
-    $.ajax({
-        url: 'get_posts.php',
-        type: 'GET',
-        dataType: 'json',
-        success: function (posts) {
-            // 게시물 목록을 담을 테이블 요소를 찾습니다.
-            const $table = $('#postList');
+      $.ajax({
+          url: 'get_posts.php',
+          type: 'GET',
+          dataType: 'json',
+          success: function (posts) {
+              // 게시물 목록을 담을 테이블 요소를 찾습니다.
+              const $table = $('#postList');
 
-            // 기존 테이블의 모든 행을 삭제합니다.
-            $table.empty();
+              // 기존 테이블의 모든 행을 삭제합니다.
+              $table.empty();
 
-            // 게시물 목록을 테이블에 추가합니다.
-            posts.forEach(post => {
-                const newRow = `
-                    <tr>
-                        <td>${post.title}</td>
-                        <td>${post.writer}</td>
-                        <td>${post.createdAt}</td>
-                    </tr>
-                `;
-                $table.append(newRow);
-            });
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            // 오류 메시지를 출력합니다.
-            console.error('Error loading posts:', textStatus, errorThrown);
-            alert('게시물을 불러오는 중 오류가 발생했습니다. 콘솔에서 오류 메시지를 확인하세요.');
-        }
-    });
-}
+              // 게시물 목록을 테이블에 추가합니다.
+              posts.forEach(post => {
+                  const newRow = `
+                      <tr>
+                          <td>${post.title}</td>
+                          <td>${post.writer}</td>
+                          <td>${post.createdAt}</td>
+                      </tr>
+                  `;
+                  $table.append(newRow);
+              });
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+              // 오류 메시지를 출력합니다.
+              console.error('Error loading posts:', textStatus, errorThrown);
+              alert('게시물을 불러오는 중 오류가 발생했습니다. 콘솔에서 오류 메시지를 확인하세요.');
+          }
+      });
+  }
+
 
 
   function check_login_status(){
