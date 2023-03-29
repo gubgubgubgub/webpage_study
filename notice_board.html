@@ -222,23 +222,26 @@
     </div>
   </div>
   <!-- 게시물 내용 모달 -->
-  <div class="modal fade" id="postContentModal" tabindex="-1" role="dialog" aria-labelledby="postContentModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+  <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="postContentModalLabel">게시물 제목</h5>
+          <h5 class="modal-title" id="postModalTitle"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          게시물 내용
+          <p id="postModalContent"></p>
+          <p><strong>작성자: </strong><span id="postModalWriter"></span></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+          <button type="button" class="btn btn-primary" id="editPostBtn" disabled>수정</button>
         </div>
       </div>
     </div>
+  </div>
   <!-- 체크박스 클릭 시 쿠키에 저장하는 스크립트 -->
   <script>
     ////////////////전역 변수들
@@ -345,7 +348,6 @@
 // 게시글 목록 띄우고 수정버튼 활성화 혹은 비활성호ㅓㅏ
   function showPostModal(post) {
       const loggedInUser = localStorage.getItem("loggedInUser"); // 로컬 스토리지에서 사용자 이름 가져오기
-      const author = loggedInUser || "guest";
     // 게시글 내용을 모달에 채웁니다.
     $('#postModalTitle').text(post.title);
     $('#postModalContent').text(post.content);
