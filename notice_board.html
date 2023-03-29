@@ -456,7 +456,8 @@
 
               // 기존 테이블의 모든 행을 삭제합니다.
               $table.empty();
-
+              post.content
+              console.log('load_posts()-> content:', post.content); // 개행 문자가 제거된 응답 값을 콘솔에 출력
               // 게시물 목록을 테이블에 추가합니다.
               posts.forEach(post => {
                   const newRow = `
