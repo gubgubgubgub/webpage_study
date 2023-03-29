@@ -286,11 +286,12 @@ h1 {
   font-size: 20px;
   cursor: pointer;
 }
-.post-title {
+
+#postList .post-title {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.post-title:hover {
+#postList .post-title:hover {
   color: blue;
 }
