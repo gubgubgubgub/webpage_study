@@ -241,6 +241,9 @@
     </div>
   <!-- 체크박스 클릭 시 쿠키에 저장하는 스크립트 -->
   <script>
+    ////////////////전역 변수들
+    let posts = []; // 게시물 데이터를 저장할 전역 변수
+    ////////////////전역 변수들
     // 각 content클릭시 보여주는 게시글
     function getPosts(contentId) {
       postList.innerHTML = ""; // 이전 게시글 목록 제거
@@ -338,14 +341,6 @@
     });
 
   });
-  
-//게시글 제목 클릭시
-
-  $(document).on('click', '.post-title', function() {
-    const postId = $(this).data('id');
-    const post = posts.find(post => post.id === postId);
-    showPostModal(post);
-  });
 
 // 게시글 목록 띄우고 수정버튼 활성화 혹은 비활성호ㅓㅏ
   function showPostModal(post) {
@@ -396,6 +391,13 @@
     });
   });
 
+  //게시글 제목 클릭시
+  $(document).on('click', '.post-title', function() {
+    const postId = $(this).data('id');
+    const post = posts.find(post => post.id === postId);
+    showPostModal(post);
+  });
+
 
 
   function add_notice_table() {
@@ -444,6 +446,7 @@
           type: 'GET',
           dataType: 'json',
           success: function (posts) {
+            posts = data; // 받아온 데이터를 전역 변수에 저장합니다.
               // 게시물 목록을 담을 테이블 요소를 찾습니다.
               const $table = $('#postList');
 
