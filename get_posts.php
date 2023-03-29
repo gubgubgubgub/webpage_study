@@ -22,6 +22,6 @@ foreach ($posts as $post) { // foreach는 배열의 요소를 하나씩 순회�
     echo "createdAt: " . $post['createdAt'] . "<br>";
 }
 
-echo json_encode($posts);
+//echo json_encode($posts);
 mysqli_close($conn);
 ?>
