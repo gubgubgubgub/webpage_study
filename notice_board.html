@@ -339,32 +339,63 @@
 
   });
   
-  function load_posts() {
+//게시글 제목 클릭시
+
+  $(document).on('click', '.post-title', function() {
+    const postId = $(this).data('id');
+    const post = posts.find(post => post.id === postId);
+    showPostModal(post);
+  });
+
+// 게시글 목록 띄우고 수정버튼 활성화 혹은 비활성호ㅓㅏ
+  function showPostModal(post) {
+      const loggedInUser = localStorage.getItem("loggedInUser"); // 로컬 스토리지에서 사용자 이름 가져오기
+      const author = loggedInUser || "guest";
+    // 게시글 내용을 모달에 채웁니다.
+    $('#postModalTitle').text(post.title);
+    $('#postModalContent').text(post.content);
+    $('#postModalWriter').text(post.writer);
+
+    // 로그인한 사용자와 게시글 작성자가 일치하면 수정 버튼을 활성화합니다.
+    if (loggedInUser === post.writer) {
+      $('#editPostBtn').prop('disabled', false);
+    } else {
+      $('#editPostBtn').prop('disabled', true);
+    }
+
+    // 모달을 표시합니다.
+    $('#postModal').modal('show');
+  }
+
+  //게시글 수정 버튼 누를시
+  $('#editPostBtn').on('click', function() {
+    const postTitle = $("#postTitle").text(); // 게시물 제목을 가져옵니다.
+    const oldContent = $("#oldPostContent").val(); // 수정 전 게시물 내용을 가져옵니다.
+    const postWriter = $("#postWriter").text(); // 게시물 작성자를 가져옵니다.
+    const newContent = $("#postContent").val(); // 수정된 게시물 내용을 가져옵니다.
     $.ajax({
-        url: 'get_posts.php',
-        type: 'GET',
-        dataType: 'json',
-        success: function (posts) {
-            // 게시물 목록을 담을 테이블 요소를 찾습니다.
-            const $table = $('#postList');
-
-            // 기존 테이블의 모든 행을 삭제합니다.
-            $table.empty();
-
-            // 게시물 목록을 테이블에 추가합니다.
-            posts.forEach(post => {
-                const newRow = `
-                    <tr>
-                        <td>${post.title}</td>
-                        <td>${post.writer}</td>
-                        <td>${post.createdAt}</td>
-                    </tr>
-                `;
-                $table.append(newRow);
-            });
+        url: "update_post.php",
+        type: "POST",
+        data: {
+            title: postTitle,
+            old_content: oldContent,
+            writer: postWriter,
+            new_content: newContent,
+        },
+        success: function (response) {
+            if (response === "success") {
+                alert("게시물이 수정되었습니다.");
+                location.reload(); // 페이지를 새로 고침하여 변경사항을 반영합니다.
+            } else {
+                alert("게시물 수정에 실패했습니다.");
+            }
+        },
+        error: function () {
+            alert("서버와 통신하는 중에 문제가 발생했습니다.");
         }
     });
-}
+  });
+
 
 
   function add_notice_table() {
@@ -383,29 +414,28 @@
     const createdAt = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
         $.ajax({
-      url: 'save_post.php', // 데이터를 전송할 서버 파일의 경로
-      type: 'POST',
-      data: {
-        'title': title, // 제목
-        'content': content, // 내용
-        'author': author, // 작성자
-        'createdAt': createdAt // 작성일
-      },
-      dataType: 'text', // 서버에서 반환되는 데이터 유형을 텍스트로 지정
-      success: function(response) {
-        console.log('Raw Response:', response); // 응답 값을 콘솔에 출력
-        response = response.trim(); // 개행 문자 제거 반환하는 과정에서 \n가 붙어있을수도있어서
-        console.log('Trimmed Response:', response); // 개행 문자가 제거된 응답 값을 콘솔에 출력
-        if (response === 'success') {
-          alert('게시글이 성공적으로 등록되었습니다.');
-          load_posts();  // 새로운 함수를 호출하여 게시물 목록을 업데이트합니다
+        url: 'save_post.php', // 데이터를 전송할 서버 파일의 경로
+        type: 'POST',
+        data: {
+          'title': title, // 제목
+          'content': content, // 내용
+          'author': author, // 작성자
+          'createdAt': createdAt // 작성일
+        },
+        dataType: 'text', // 서버에서 반환되는 데이터 유형을 텍스트로 지정
+        success: function(response) {
+          console.log('Raw Response:', response); // 응답 값을 콘솔에 출력
+          response = response.trim(); // 개행 문자 제거 반환하는 과정에서 \n가 붙어있을수도있어서
+          console.log('Trimmed Response:', response); // 개행 문자가 제거된 응답 값을 콘솔에 출력
+          if (response === 'success') {
+            alert('게시글이 성공적으로 등록되었습니다.');
+            load_posts();  // 새로운 함수를 호출하여 게시물 목록을 업데이트합니다
 
-        } else {
-          alert('게시글 등록에 실패하였습니다.');
+          } else {
+            alert('게시글 등록에 실패하였습니다.');
+          }
         }
-      }
-    });
-
+      });
   }
 
   function load_posts() {
@@ -424,7 +454,7 @@
               posts.forEach(post => {
                   const newRow = `
                       <tr>
-                          <td>${post.title}</td>
+                          <td class="post-title" data-id="${post.id}">${post.title}</td>
                           <td>${post.writer}</td>
                           <td>${post.createdAt}</td>
                       </tr>
