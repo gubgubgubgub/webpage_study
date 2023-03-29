@@ -354,6 +354,8 @@
     $('#postModalWriter').text(post.writer);
 
     // 로그인한 사용자와 게시글 작성자가 일치하면 수정 버튼을 활성화합니다.
+    console.log('showPostModal()-> loggedInUser:', loggedInUser);
+     console.log('showPostModal()-> post.writer:', post.writer);
     if (loggedInUser === post.writer) {
       $('#editPostBtn').prop('disabled', false);
     } else {
@@ -397,7 +399,6 @@
   $(document).on("click", ".post-title", function () {
   const postId = parseInt($(this).data("id")); // 게시물 id를 가져오고 정수로 변환합니다.
   const post = posts.find((post) => parseInt(post.id) === postId); // 'post.id'를 정수로 변환하여 비교합니다.
-  alert('Clicked post: ' + post.title);
   showPostModal(post);
 });
 
