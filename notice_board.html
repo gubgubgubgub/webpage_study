@@ -395,6 +395,7 @@
   $(document).on("click", ".post-title", function () {
   const postId = parseInt($(this).data("id")); // 게시물 id를 가져오고 정수로 변환합니다.
   const post = posts.find((post) => parseInt(post.id) === postId); // 'post.id'를 정수로 변환하여 비교합니다.
+  alert(post+"누름");
   showPostModal(post);
 });
 
