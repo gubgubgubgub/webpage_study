@@ -357,10 +357,12 @@
     console.log('showPostModal()-> loggedInUser:', loggedInUser);
      console.log('showPostModal()-> post.writer:', post.writer);
      if (loggedInUser === post.writer) {
-        $('#editPostBtn').show();
-      } else {
-        $('#editPostBtn').hide();
-      }
+      $('#editPostBtn').prop('disabled', false);
+      $('#postModalContent').prop('readonly', false);
+    } else {
+      $('#editPostBtn').prop('disabled', true);
+      $('#postModalContent').prop('readonly', true);
+    }
 
     // 모달을 표시합니다.
     $('#postModal').modal('show');
