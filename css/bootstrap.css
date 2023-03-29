@@ -10232,5 +10232,13 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+  .post-title {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .post-title:hover {
+    color: blue;
+  }
 }
 /*# sourceMappingURL=bootstrap.css.map */
