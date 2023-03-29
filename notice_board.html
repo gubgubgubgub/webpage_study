@@ -445,7 +445,7 @@
           url: 'get_posts.php',
           type: 'GET',
           dataType: 'json',
-          success: function (posts) {
+          success: function (data) {
             posts = data; // 받아온 데이터를 전역 변수에 저장합니다.
               // 게시물 목록을 담을 테이블 요소를 찾습니다.
               const $table = $('#postList');
