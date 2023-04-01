@@ -268,6 +268,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
           <button type="button" class="btn btn-primary" id="editPostBtn" style="display: block;">수정</button>
+          <button type="button" class="btn btn-primary" id="editdeleteBtn" style="display: block;">삭제</button>
         </div>
       </div>
     </div>
@@ -427,12 +428,15 @@
       console.log('showPostModal()-> loggedInUser:', loggedInUser);
       console.log('showPostModal()-> post.writer:', post.writer);
       if (loggedInUser === post.writer) {
-        $('#editPostBtn').prop('disabled', false);
+        $('#editPostBtn').prop('disabled', false).show(); // 수정 버튼 활성화하고 보이도록 변경
+        $('#editdeleteBtn').prop('disabled', false).show(); // 삭제 버튼 활성화하고 보이도록 변경
         $('#postModalContent').prop('readonly', false);
       } else {
-        $('#editPostBtn').prop('disabled', true);
+        $('#editPostBtn').prop('disabled', true).hide(); // 수정 버튼 비활성화하고 숨기도록 변경
+        $('#editdeleteBtn').prop('disabled', true).hide(); // 삭제 버튼 비활성화하고 숨기도록 변경
         $('#postModalContent').prop('readonly', true);
       }
+
 
       // 모달을 표시합니다.
       $('#postModal').modal('show');
