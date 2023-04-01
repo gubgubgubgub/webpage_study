@@ -496,7 +496,7 @@
 
       // 작성자
       const loggedInUser = localStorage.getItem("loggedInUser"); // 로컬 스토리지에서 사용자 이름 가져오기
-      const author = loggedInUser || "guest";
+      const author = loggedInUser ? loggedInUser : "guest";
 
       // 작성일
       const date = new Date(); // 현재 날짜와 시간을 가져옵니다.
