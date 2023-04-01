@@ -344,6 +344,7 @@
       $('#logout-btn').click(function() {
         $.get('logout.php', function(response) {
             if (response === 'logged_out') {
+              localStorage.removeItem("loggedInUser");
                 location.reload();
             }
         });
