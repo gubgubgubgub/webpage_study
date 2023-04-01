@@ -398,7 +398,7 @@
         const title = postTitle.value;
         const content = postContent.value;
         const loggedInUser = localStorage.getItem("loggedInUser"); // 로컬 스토리지에서 사용자 이름 가져오기
-        const author = loggedInUser || "guest";
+        const author = loggedInUser ? loggedInUser : "guest";
         const createdAt = new Date().toISOString().slice(0, 10);
 
         add_notice_table();
